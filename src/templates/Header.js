@@ -2,11 +2,9 @@ const Header = () => {
   const view = `
   <div class="header-main">
     <div class="header-logo">
-    <h1>
     <a href="/rockrty/">
-    Rockrty
+    <img src="https://i.imgur.com/Pr8pXcJ.png" width="200" alt="rick and mortys logo">
     </a>
-    </h1>
     </div>
     <div class="header-nav">
     <a href="#/about/">about</a>
