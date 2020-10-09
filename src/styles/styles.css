@@ -8,30 +8,119 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 .header-main {
+  padding: 0 10px;
+  margin: 1em 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .header a {
-  text-decoration: none;
   color: #15302c;
 }
 
-.main {
-  padding: 10px;
-  grid-template-columns: minmax(auto, 976px);
-  display: grid;
+.characters {
+  background: rgb(36, 40, 47);
+  padding: 4.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.character-item {
+  margin: 0.75rem;
+  background: rgb(60, 62, 68);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  width: 600px;
+  height: 220px;
+  display: flex;
+  opacity: 0.8;
+  transition: 0.2s;
+}
+
+.character-item:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.character-item a {
+  display: inherit;
+  justify-content: inherit;
+  align-items: inherit;
+  height: inherit;
+  flex-wrap: inherit;
+  grid-template-areas: inherit;
+  flex-direction: inherit;
+  color: white;
+}
+
+.image-container {
+  margin: 0;
+  height: 100%;
+}
+
+.character-image {
+  height: 100%;
+  object-fit: cover;
+}
+
+.character-content {
+  width: 100%;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.character-title h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.character-info {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: center;
   justify-content: center;
 }
 
-.characters {
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1.5rem;
-  grid-row-gap: 1.5em;
-  display: grid;
+.character-info .question {
+  color: rgb(158, 158, 158);
 }
+
+.status-container {
+  display: flex;
+  align-items: center;
+}
+
+.bold-info {
+  font-weight: bold;
+}
+
+.dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: rgb(214, 61, 46);
+  border-radius: 50%;
+  margin: 5px 5px 5px 0;
+}
+
+.dot.Alive {
+  background-color: rgb(85, 204, 68);
+}
+.dot.unknown {
+  background-color: gray;
+}
+/*----------------------------------------------------------------*/
 
 .characters-inner {
   grid-template-columns: 1fr 2fr;
@@ -124,5 +213,22 @@ body {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 650px) {
+  .character-item {
+    flex-direction: column;
+    height: initial;
+    width: 100%;
+  }
+  .character-image {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .character-content {
+    height: 220px;
   }
 }
