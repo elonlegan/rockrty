@@ -13,4 +13,8 @@ export class CharacterService {
   get(params: HttpParams) {
     return this.http.get<any[]>(baseUrl, { params });
   }
+
+  getById(id: string) {
+    return this.http.get<any>(`${baseUrl}/${id}`);
+  }
 }

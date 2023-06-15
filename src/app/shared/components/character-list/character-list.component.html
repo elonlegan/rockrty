@@ -1,5 +1,8 @@
 <ion-list>
-  <ion-item *ngFor="let character of characters; let index">
+  <ion-item
+    *ngFor="let character of characters; let index"
+    [routerLink]="['character', character.id]"
+  >
     <ion-avatar slot="start">
       <img [src]="character.image" [alt]="character.name" />
     </ion-avatar>
