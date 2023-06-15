@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { finalize, first } from 'rxjs';
+import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
   selector: 'app-character-list',
@@ -7,25 +9,35 @@ import { InfiniteScrollCustomEvent } from '@ionic/angular';
   styleUrls: ['./character-list.component.scss'],
 })
 export class CharacterListComponent implements OnInit {
-  items: string[] = [];
+  characters: any[] = [];
+  search: string = '';
+  page: number = 1;
 
-  constructor() {}
+  constructor(private characterService: CharacterService) {}
 
   ngOnInit() {
-    this.generateItems();
+    this.getCharacters();
   }
 
-  private generateItems() {
-    const count = this.items.length + 1;
-    for (let i = 0; i < 50; i++) {
-      this.items.push(`Item ${count + i}`);
-    }
+  getCharacters(scrollLoading?: InfiniteScrollCustomEvent) {
+    this.characterService
+      .get({ name: this.search, page: `${this.page}` })
+      .pipe(
+        first(),
+        finalize(() => {
+          if (scrollLoading) {
+            scrollLoading.target.complete();
+          }
+        })
+      )
+      .subscribe((characters: any) => {
+        this.characters = [...this.characters, ...characters.results];
+      });
   }
 
-  onIonInfinite(ev: any) {
-    this.generateItems();
-    setTimeout(() => {
-      (ev as InfiniteScrollCustomEvent).target.complete();
-    }, 500);
+  onIonInfinite(event: any) {
+    this.page++;
+
+    this.getCharacters(event);
   }
 }
