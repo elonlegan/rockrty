@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { DARK_MODE_OPTIONS } from 'angular-dark-mode';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +19,16 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     SharedModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: DARK_MODE_OPTIONS,
+      useValue: {
+        darkModeClass: 'dark',
+        lightModeClass: 'light',
+      },
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
