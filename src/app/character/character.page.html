@@ -1,7 +1,6 @@
 <ion-content>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">character</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-spinner color="success" *ngIf="loading; else content"></ion-spinner>
+  <ng-template #content>
+    <app-character-card [character]="character"> </app-character-card>
+  </ng-template>
 </ion-content>
