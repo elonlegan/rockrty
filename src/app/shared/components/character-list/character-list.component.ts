@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
 import { finalize, first } from 'rxjs';
 import { CharacterService } from 'src/app/services/character.service';
@@ -8,16 +8,23 @@ import { CharacterService } from 'src/app/services/character.service';
   templateUrl: './character-list.component.html',
   styleUrls: ['./character-list.component.scss'],
 })
-export class CharacterListComponent implements OnInit {
+export class CharacterListComponent implements OnInit, OnChanges {
   @Input() characters: any[] = [];
   @Input() infinityScroll: boolean = true;
-  search: string = '';
+  @Input() search: string = '';
   page: number = 1;
 
   constructor(private characterService: CharacterService) {}
 
   ngOnInit() {
-    if (!this.characters[0]) {
+    if (this.infinityScroll) {
+      this.getCharacters();
+    }
+  }
+
+  ngOnChanges() {
+    if (this.infinityScroll) {
+      this.characters = [];
       this.getCharacters();
     }
   }

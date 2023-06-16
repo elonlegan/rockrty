@@ -43,9 +43,10 @@ export class SearchBarComponent implements OnInit {
     this.router.navigate(['/'], {
       queryParams: { search: event.target.value },
     });
+    this.changeFocus(false);
   }
 
-  changeFocus(isOnfocus: boolean) {
-    this.showList = isOnfocus;
+  changeFocus(isOnfocus: boolean, event?: any) {
+    this.showList = isOnfocus && event.target.value;
   }
 }

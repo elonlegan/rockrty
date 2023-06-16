@@ -2,7 +2,7 @@
   (ionInput)="getSuggestions($event)"
   (ionChange)="search($event)"
   (ionBlur)="changeFocus(false)"
-  (ionFocus)="changeFocus(true)"
+  (ionFocus)="changeFocus(true, $event)"
 ></ion-searchbar>
 <ion-card [class.show]="showList">
   <ion-card-content>
