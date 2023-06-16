@@ -4,9 +4,10 @@
       <img alt="logo" height="40" src="https://i.imgur.com/Pr8pXcJ.png" />
     </ion-title>
     <ion-buttons slot="end">
-      <ion-toggle [checked]="darkMode$ | async" (ionChange)="onToggle()"
-        >Dark Mode</ion-toggle
-      >
+      <ion-toggle [checked]="darkMode$ | async" (ionChange)="onToggle()">
+        Dark Mode
+      </ion-toggle>
     </ion-buttons>
   </ion-toolbar>
+  <app-search-bar></app-search-bar>
 </ion-header>

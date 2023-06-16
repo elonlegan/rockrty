@@ -1,0 +1,15 @@
+ion-card {
+  position: fixed;
+  width: 95%;
+  display: none;
+  left: 2.5%;
+  margin: 10px 0;
+
+  &.show {
+    display: unset;
+  }
+}
+
+ion-infinite-scroll {
+  display: none !important;
+}

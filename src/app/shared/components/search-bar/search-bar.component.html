@@ -1,0 +1,14 @@
+<ion-searchbar
+  (ionInput)="getSuggestions($event)"
+  (ionChange)="search($event)"
+  (ionBlur)="changeFocus(false)"
+  (ionFocus)="changeFocus(true)"
+></ion-searchbar>
+<ion-card [class.show]="showList">
+  <ion-card-content>
+    <app-character-list
+      [characters]="sugCharacters"
+      [infinityScroll]="false"
+    ></app-character-list>
+  </ion-card-content>
+</ion-card>
